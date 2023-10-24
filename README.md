@@ -1,3 +1,2 @@
-# Backend FOR MangoBet
+# Backend for MangoBet
 
-## Proyecto Iniciado
