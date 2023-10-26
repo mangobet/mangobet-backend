@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping(path = "/user")
@@ -27,13 +29,7 @@ public class UserController {
         return "User registered";
     }
     @PostMapping(consumes = {"application/json", "application/xml"})
-    public ResponseEntity<String> createUser(@RequestBody User user) {
-        if(user.getUsername()==null || user.getEmail()==null || user.getPassword()==null){
-            return ResponseEntity.badRequest().body("Missing parameters");
-        }
-        if(user.getUsername().length()<4 || user.getUsername().length()>20){
-            return ResponseEntity.badRequest().body("Username must be between 4 and 20 characters");
-        }
+    public ResponseEntity<String> createUser(@Valid @RequestBody User user) {
         user.printUser();
         return ResponseEntity.ok("user created "+user.getUsername());
     }
