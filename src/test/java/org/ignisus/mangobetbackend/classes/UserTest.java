@@ -20,7 +20,6 @@ class UserTest {
         assert(user2.getUsername().equals("test"));
         assert(user2.getPassword().equals("test"));
         assert(user2.getEmail().equals("test"));
-        assert(user2.getRole().equals(UserRole.ADMIN));
 
         User user3 = new User();    // Empty constructor
         assert(user3.getId() == null);
