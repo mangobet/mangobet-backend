@@ -1,4 +1,4 @@
-package org.ignisus.enums;
+package org.ignisus.mangobetbackend.enums;
 
 public enum UserRole {
     ADMIN,

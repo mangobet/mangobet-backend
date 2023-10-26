@@ -1,10 +1,9 @@
 package org.ignisus.mangobetbackend.classes;
 
     
+import org.ignisus.mangobetbackend.enums.UserRole;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import org.ignisus.enums.UserRole;
 @SpringBootTest
 class UserTest {
     @Test
@@ -16,7 +15,7 @@ class UserTest {
         assert(user.getEmail().equals("test"));
         assert(user.getRole().equals(UserRole.ADMIN));
 
-        User user2 = new User("test", "test", "test", UserRole.ADMIN);
+        User user2 = new User("test", "test", "test");
         assert(user2.getId() == null); // No ID
         assert(user2.getUsername().equals("test"));
         assert(user2.getPassword().equals("test"));

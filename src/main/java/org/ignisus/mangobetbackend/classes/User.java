@@ -1,6 +1,6 @@
 package org.ignisus.mangobetbackend.classes;
 
-import org.ignisus.enums.UserRole;
+import org.ignisus.mangobetbackend.enums.UserRole;
 
 
 
@@ -21,13 +21,18 @@ public class User {
         this.email = email;
         this.role = role;
     }
-    public User(String username, String password, String email,UserRole  role) { // No ID
+    public User(String username, String password, String email) { // No ID, Role
         this.username = username;
         this.password = password;
         this.email = email;
-        this.role = role;
     }
     public User() {} // Empty constructor for Spring
+
+
+    // METHODS
+    public void printUser() {
+        System.out.println("User: " + this.username + " (" + this.email + ")");
+    }
 
 
 
