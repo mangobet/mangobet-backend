@@ -28,7 +28,12 @@ public class UserController {
     }
     @PostMapping(consumes = {"application/json", "application/xml"})
     public ResponseEntity<String> createUser(@RequestBody User user) {
-
+        if(user.getUsername()==null || user.getEmail()==null || user.getPassword()==null){
+            return ResponseEntity.badRequest().body("Missing parameters");
+        }
+        if(user.getUsername().length()<4 || user.getUsername().length()>20){
+            return ResponseEntity.badRequest().body("Username must be between 4 and 20 characters");
+        }
         user.printUser();
         return ResponseEntity.ok("user created "+user.getUsername());
     }
