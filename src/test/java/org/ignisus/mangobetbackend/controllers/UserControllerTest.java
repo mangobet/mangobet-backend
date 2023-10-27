@@ -43,7 +43,7 @@ public class UserControllerTest {
         // Preparar los datos a enviar en la solicitud
         String requestBody = "<user>\n" +
              "    <username>testUser</username>\n" +
-             "    <email>juan@</email>\n" +
+             "    <email>juan@email.com</email>\n" +
              "    <password>1234</password>\n" +
              "</user>";
 
