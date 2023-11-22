@@ -1,7 +1,7 @@
 package org.ignisus.mangobetbackend.classes;
 
     
-import org.ignisus.mangobetbackend.enums.UserRole;
+import org.ignisus.mangobetbackend.classes.enums.UserRole;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
@@ -31,8 +31,9 @@ class UserTest {
     @Test
     void testUserRoleTypes() {
         assert(UserRole.ADMIN.toString().equals("ADMIN"));
-        assert(UserRole.NORMAL.toString().equals("NORMAL"));
-        assert(UserRole.OWNER.toString().equals("OWNER"));
+        assert(UserRole.BRAND.toString().equals("BRAND"));
+        assert(UserRole.ACTIVE.toString().equals("ACTIVE"));
+        assert(UserRole.INACTIVE.toString().equals("INACTIVE"));
     }
 
     void testUserSetter(){
