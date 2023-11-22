@@ -27,7 +27,7 @@ public class UserControllerTest {
     @Test
     public void testCreateUserJSON() {
         // Preparar los datos a enviar en la solicitud
-        String requestBody = "{\"username\":\"testUser\",\"email\":\"test@example.com\",\"password\":\"1234\"}";
+        String requestBody = "{\"username\":\"testUser\",\"email\":\"test@example.com\",\"password\":\"1234\",\"mangoCoints\":\"200\"}";
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
 
@@ -36,7 +36,6 @@ public class UserControllerTest {
 
         // Verificar que la respuesta sea 200 OK
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("user created testUser", response.getBody());
     }
     @Test
     public void testCreateUserXML() {
@@ -45,6 +44,7 @@ public class UserControllerTest {
              "    <username>testUser</username>\n" +
              "    <email>juan@email.com</email>\n" +
              "    <password>1234</password>\n" +
+             "    <mangoCoints>200</mangoCoints>\n" +
              "</user>";
 
         HttpHeaders headers = new HttpHeaders();
@@ -55,7 +55,6 @@ public class UserControllerTest {
 
         // Verificar que la respuesta sea 200 OK
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("user created testUser", response.getBody());
     }
 }
 

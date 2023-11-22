@@ -2,7 +2,9 @@ package org.ignisus.mangobetbackend.controllers;
 
 
 import org.ignisus.mangobetbackend.classes.User;
-import org.ignisus.mangobetbackend.services.UserService;
+import org.ignisus.mangobetbackend.repositorys.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,31 +19,22 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping(path = "/user")
 public class UserController {
-    private final UserService userService;
+    @Autowired
+    private UserRepository userRepository;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-}
-    @GetMapping("/welcome/{userName}")
-    public String welcomeUser(@PathVariable String userName) {
-        return "Welcome " + userName;
-    }
-    public String registerUser(User user) {
-        System.out.println(user.toString());
-        return "User registered";
-    }
-    
-    @PostMapping(consumes = {"application/json", "application/xml"})
-    public User Register(@Valid @RequestBody User user) {
-        System.out.println(user.toString());
-        return userService.save(user);
-
-    }
-    
-    @PostMapping(path = "/login", consumes = {"application/json", "application/xml"})
-    public org.apache.catalina.User login(@Valid @RequestBody User user) {
-        return userService.findByUsername(user.getUsername());
+    @GetMapping(path = "/welcome/{username}")    
+    public String welcome(@PathVariable String username) {
+        return "Welcome " + username + "!";
     }
 
+    @PostMapping(path = "/register")
+    public ResponseEntity<User> register(@Valid @RequestBody User user) {
+        try {
+            User newUser =  userRepository.save(new User(user.getUsername(), user.getPassword(), user.getEmail()));
+            return new ResponseEntity<>(newUser, org.springframework.http.HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
 

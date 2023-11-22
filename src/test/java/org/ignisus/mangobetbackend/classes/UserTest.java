@@ -8,12 +8,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 class UserTest {
     @Test
     void testUserConstructors() {
-        User user = new User("1", "test", "test", "test", UserRole.ADMIN);
+        User user = new User("1", "test", "test", "test", UserRole.ADMIN,200);
         assert(user.getId().equals("1"));
         assert(user.getUsername().equals("test"));
         assert(user.getPassword().equals("test"));
         assert(user.getEmail().equals("test"));
         assert(user.getRole().equals(UserRole.ADMIN));
+        assert(user.getMangoCoints() == 200);
 
         User user2 = new User("test", "test", "test");
         assert(user2.getId() == null); // No ID
